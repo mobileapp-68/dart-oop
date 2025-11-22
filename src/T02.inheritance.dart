@@ -15,12 +15,18 @@ void main() {
   teacher.eat(); // Output: Teacher is eating
   print(teacher.age);
 
+  // Can't instantiate mixin directly
+  // Athlete athlete = Athlete();
+
   FootballPlayer player = FootballPlayer(age: 25);
   player.sayHello(); // Output: Hello from Football Player
   player.eat(); // Output: Person is eating
   player.run(); // Output: Running
   player.kick(); // Output: Kicking the ball
   print(player.age);
+
+  Dog dog = Dog();
+  dog.makeSound(); // Output: Bark
 }
 
 class Person {
@@ -92,4 +98,23 @@ class FootballPlayer extends Person with Athlete, Football {
   }
 
   FootballPlayer({double age = 20}) : super(age: age);
+}
+
+// Abstract class example
+abstract class Animal {
+  // Abstract method
+  void makeSound();
+
+  // Concrete method
+  void sleep() {
+    print('Animal is sleeping');
+  }
+}
+
+class Dog extends Animal {
+  // Need to implement the abstract method
+  @override
+  void makeSound() {
+    print('Bark');
+  }
 }
