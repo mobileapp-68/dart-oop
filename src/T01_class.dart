@@ -68,6 +68,9 @@ class StudentD {
   // Non-nullable variable with constructor parameter
   double gpa;
 
+  // Using initializer list
+  // StudentD({required double gpa}) : this.gpa = gpa;
+  // Alternatively, you can use this shorthand:
   StudentD({required this.gpa});
 }
 
