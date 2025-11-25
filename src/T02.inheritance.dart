@@ -8,7 +8,7 @@ void main() {
   student.sayHello(); // Output: Hello from Student
   student.eat(); // Output: Person is eating
   student.study(); // Output: Student is studying
-  print(student.age);
+  student.printAge();
 
   Teacher teacher = Teacher();
   teacher.sayHello(); // Output: Hello from Teacher
@@ -31,6 +31,8 @@ void main() {
 
 class Person {
   double age;
+  Person({this.age = 0});
+
   void sayHello() {
     print('Hello from Person');
   }
@@ -38,12 +40,21 @@ class Person {
   void eat() {
     print('Person is eating');
   }
-
-  Person({this.age = 0});
 }
 
 class Student extends Person {
   double? gpa;
+
+  // Without super constructor call, the age in Person will be default (0)
+  // Student({this.gpa = 0, double age = 10});
+
+  // With super constructor call to initialize age in Person
+  // Student({double gpa = 0, double age = 10}) : super(age: age) {
+  //   this.gpa = gpa;
+  // }
+
+  // Shorthand for above constructor
+  Student({this.gpa = 0, double age = 10}) : super(age: age);
 
   @override
   void sayHello() {
@@ -54,10 +65,9 @@ class Student extends Person {
     print('Student is studying');
   }
 
-  // Student({double gpa = 0, double age = 10}) : super(age: age) {
-  //   this.gpa = gpa;
-  // }
-  Student({this.gpa = 0, double age = 10}) : super(age: age);
+  void printAge() {
+    print('Child Class Age: $age. Super Class Age: ${super.age}');
+  }
 }
 
 class Teacher implements Person {
@@ -65,7 +75,11 @@ class Teacher implements Person {
   double age = 30;
   double salary;
 
+  // No super call needed since Teacher does not extend Person.
   Teacher({this.salary = 0, double this.age = 30});
+
+  // Using super here will cause an error
+  // Teacher({this.salary = 0, double age = 30}) : super(age: age);
 
   @override
   void eat() {
@@ -92,12 +106,12 @@ mixin Football on Person {
 }
 
 class FootballPlayer extends Person with Athlete, Football {
+  FootballPlayer({double age = 20}) : super(age: age);
+
   @override
   void sayHello() {
     print('Hello from Football Player');
   }
-
-  FootballPlayer({double age = 20}) : super(age: age);
 }
 
 // Abstract class example

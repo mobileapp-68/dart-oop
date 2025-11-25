@@ -1,7 +1,10 @@
 ```dart
 import 'package:flutter/material.dart';
 
+
 void main() {
+  // The use of const marks the widget tree’s root widget as a compile‑time constant so Flutter
+  // can reuse the same immutable instance and avoid rebuilding it when nothing changes.
   runApp(const MyApp());
 }
 

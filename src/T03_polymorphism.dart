@@ -1,3 +1,5 @@
+// Polymorphic behavior in Dart is the ability of objects from different classes to be
+// treated as objects of a common superclass, primarily achieved through method overriding.
 void main() {
   Shape circle = Circle(5);
   print('Area of Circle: ${circle.area()}'); // Output: Area of Circle: 78.5
